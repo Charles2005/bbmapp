@@ -1,0 +1,79 @@
+  var result=[];
+        var avg_price_history = [];
+        var all_market_json = <?php 
+                $query = "SELECT ROUND(AVG(product_qty), 0) as product_qty, ROUND(AVG(product_price),0) as product_price, MAX(product_price) AS high_price, MIN(product_price) AS low_price,
+                MAX(product_qty) as high_vol, MIN(product_qty) as low_vol, region, shop_name, date_created 
+                FROM bbm_data GROUP BY shop_name ORDER BY region";
+
+
+                $result = mysqli_query($conn, $query); 
+
+                $data = array();
+
+                while($row = mysqli_fetch_assoc($result)){
+                    $data[] = $row; 
+                }
+
+
+                echo json_encode($data);
+
+                ?> 
+        for(var i = 0; i < all_market_json.length; i ++){
+            result.push(all_market_json[i]['product_price']);
+        }
+
+        var total = 0;
+
+        for(var i = 0; i < result.length; i++){
+            total += Number(result[i]);
+        }
+        var avg_price = total / result.length;
+        console.log(Math.round(avg_price));
+        avg_price_history.push(avg_price); 
+        console.log(avg_price_history);
+
+
+        if(volume[volume.length - 1] > volume[volume.length-2]){
+            $('#avg-volume-market').css('color', 'red');
+        }else{
+            $('#avg-volume-market').css('color','green');
+        }
+
+
+
+
+             $("#export").click(function(){
+            var selectedCategory  = $('#category').val(); 
+            var selectedProduct = $('#product').val(); 
+            var startDate = $('#start-date').val(); 
+            var endDate = $('#end-date').val();
+            var selectedRegion = $('#region').val();
+             var selectedMarket = $('#market').val();
+            console.log("click");
+
+            $.ajax({
+                    url: 'php/queriesDownload.php', // Replace with your JSON data source
+                    method: 'GET',
+                    success: function(jsonData) {
+                        // Create a JSON string
+                        var jsonContent = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(jsonData));
+
+                    // Create a download link
+                        var link = document.createElement("a");
+                        link.setAttribute("href", jsonContent);
+                        link.setAttribute("download", "exported_data.json");
+                        document.body.appendChild(link);
+
+                        // Trigger the download
+                        link.click();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+    
+
+        });
+
+
+        SELECT product_qty, product_price,region, date_created, shop_name FROM bbm_data WHERE product_name='Bitter Gourd / Ampalaya' and region = 'NCR' AND date_created between '2023-09-01' AND '2023-09-30

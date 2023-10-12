@@ -1,0 +1,272 @@
+*{
+    box-sizing: border-box;
+    margin:0; 
+    padding: 0; 
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color:  #efefef;
+}
+h1{
+    color: #EF476f;
+    font-weight: 500;
+    font-size: 2.2rem;
+}
+
+h1 a {
+    text-decoration: none;
+    color: #EF476f;
+}
+h2{
+    color: #118AB2;
+    font-weight: 500;
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    text-align: center; 
+}
+p{
+    text-align: center;
+    font-size: 25px;
+}
+label{
+    color: #118AB2;
+    font-size:1.25em;
+    font-weight: 500;
+}
+
+select{
+    width: 175px;
+    padding: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color:#FFD166;
+    margin-bottom: 0.75rem;
+    color: #118AB2;
+   
+}
+input[type="date"]{
+    width: 170px;
+    padding: 4px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color:#FFD166;
+    margin-bottom: 0.75rem; 
+    color:#118AB2;
+}
+
+
+button{
+    width: 8rem;
+    height: 3rem;
+    background-color: #118AB2; 
+    color:  White; 
+    border-radius: 10px;
+    font-weight: 300;
+    font-size: 1rem;
+    border-style: none;
+    cursor: pointer;
+}
+
+button a{
+    text-decoration: none;
+    color:  White; 
+}
+
+button:hover{
+    background-color: #073B4C;
+    color: #06D6A0;
+}
+
+.logout-button button{
+    background-color: #EF476f;
+    margin-right: 2.5rem;
+}
+
+.logout-button button:hover{
+    background-color: #073B4C;
+    color: #06D6A0;
+}
+
+
+.queries-download button{
+    background-color: #FFD166; 
+    color: white;
+}
+
+.queries-download button:hover{
+    background-color: #073B4C;
+    color: #06D6A0;
+}
+.main-container {
+    display: flex;
+   
+}
+
+.sidebar {
+    width:18.75rem; /* Set the initial width of the sidebar */
+    background-color: #06D6A0;
+    color: #06D6A0;
+    padding: 20px;
+}
+
+.sub-container{
+    width: 100%;
+}
+
+.input-data{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    width: 100%; 
+    height: 5rem;
+}
+.data-input{
+    margin-right: 5rem;
+}
+
+.graphs-container{
+    height: 44.875rem;
+    margin-left: 0.938rem;
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: space-between;
+} 
+.top-graph{
+    display:flex;
+}
+.bottom-graph{
+    display: flex;
+}
+
+ .top-graph .first-line-graph{
+    width: 75.875rem;
+    height: 21.875rem;
+    margin-bottom: 1rem;
+    background-color: white;
+    border-radius: 15px;
+    padding: 5px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.top-graph .first-bar-graph{
+    width: 24.25rem;
+    height: 21.875rem;
+    margin-right: 1rem;
+    margin-left: 1.5rem;
+    padding: 5px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.bottom-graph .second-line-graph{
+    width: 75.875rem;
+    height: 21.875rem;
+    padding: 5px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.bottom-graph .second-bar-graph{
+    width: 24.25rem;
+    height:31rem;
+    margin-right: 1rem;
+    margin-left: 1.5rem;
+    padding: 5px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+
+.summary-container{
+    display: flex; 
+    justify-content: space-between;
+    width: 76rem;
+    height: 8.1rem;
+    margin-left: 0.938rem;
+    margin-top: 0.938rem;
+
+}
+
+.summary-container .avg-per-reg{
+    width: 25rem;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-top: .5rem;
+
+}
+
+.title h3{
+    text-align: center;
+}
+.average-product-price{
+    width: 100%;
+    text-align: center;
+}
+.high{
+    display:flex; 
+    justify-content: start;
+
+}
+.high .high-price{
+    margin-right: 1rem;
+}
+
+.volume-size{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+.summary-container .avg-per-market{
+    width: 25rem;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    display: flex; 
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+    padding-top: .5rem;
+}
+
+.avg-per-market{
+    width: 100%;
+    text-align:center;
+}
+
+
+.summary-container .most-expensive-products{
+    width: 25rem;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: .5rem;
+}
+
+.average-volume{
+    width: 100%;
+    text-align:center;
+}
+
+
