@@ -493,7 +493,7 @@
                 url:'php/allMarket.php', 
                 method: 'GET', 
                 success: function(result){
-                 
+                    // const bgc = [];
                     var parsedData = JSON.parse(result); 
                     var date = parsedData.map(function(item){
                         var jsDate = new Date(item.date_created);
@@ -511,6 +511,14 @@
                     var labels = parsedData.map(function(item){
                         return item.shop_name;
                     })
+
+                    // for(var i = 0; i <= price.length; i++){
+                    //     if(price[i] > price[i + 1]){
+                    //         bgc.push("green");
+                    //     }else{
+                    //         bgc.push("red");
+                    //     }
+                    // }console.log(bgc);
                     
                 
 
