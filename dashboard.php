@@ -511,6 +511,7 @@
                     var labels = parsedData.map(function(item){
                         return item.shop_name;
                     })
+                    
                 
 
                     chart1.data.labels = date; 
@@ -520,7 +521,7 @@
                     chart2.data.datasets[0].data = volume;
                     chart2.options.plugins.title.text = "Volume of Ampalaya in the Pasay City Wet Market";
                    
-                    if(price[price.length - 1] > price[price.length-2]){
+                    if(Number(price[price.length - 1]) > Number(price[price.length-2])){
                        chart1.data.datasets[0].backgroundColor = 'rgb(255, 69, 0)';
                        chart1.data.datasets[0].borderColor = 'rgb(255, 69, 0)';
                        $('#critical-text-market').text("Price Increasing!");
@@ -534,12 +535,12 @@
                        
                     }
 
-                    if(volume[volume.length - 1] > volume[volume.length-2]){
+                    if(Number(volume[volume.length - 1]) > Number(volume[volume.length-2])){
                         chart2.data.datasets[0].backgroundColor = 'rgb(0, 128, 0)';
                         chart2.data.datasets[0].borderColor = 'rgb(0, 128, 0)';
                         $('#critical-text-volume').text("Volume Increasing!");
                         $('#critical-text-volume').css("color", "green");
-                    }else if(volume[volume.length - 1] == volume[volume.length-2]){
+                    }else if(Number(volume[volume.length - 1]) == Number(volume[volume.length-2])){
                         chart2.data.datasets[0].backgroundColor = 'rgb(0, 128, 0)';
                         chart2.data.datasets[0].borderColor = 'rgb(0, 128, 0)';
                         $('#critical-text-volume').text("No changes");
@@ -602,7 +603,7 @@
                     chart4.options.plugins.title.text = "Volume of Ampalaya in NCR";
                 
 
-                    if(price[price.length - 1] > price[price.length-2]){
+                    if(Number(price[price.length - 1]) > Number(price[price.length-2])){
                         chart3.data.datasets[0].backgroundColor = 'rgb(255, 69, 0)';
                         chart3.data.datasets[0].borderColor = 'rgb(255, 69, 0)';
                         $('#critical-text-region').text("Price Increasing!");
@@ -666,24 +667,25 @@
                                         chart1.data.labels = labels; 
                                         chart1.data.datasets[0].data = price; 
                         
-                                        if(price[price.length - 1] > price[price.length-2]){
+                                        if(Number(price[price.length - 1]) > Number(price[price.length-2])){
                                             chart1.data.datasets[0].backgroundColor = 'rgb(255, 69, 0)';
                                             chart1.data.datasets[0].borderColor = 'rgb(255, 69, 0)';
                                             $('#critical-text-market').text("Price Increasing!");
                                             $('#critical-text-market').css("color", "red");
-                                        }else if (price[price.length - 1]  == price[price.length-2]){
-                                            chart1.data.datasets[0].backgroundColor = 'rgb(0, 128, 0)';
-                                            chart1.data.datasets[0].borderColor = 'rgb(0, 128, 0)';
-                                            $('#critical-text-market').text("Nothing Changed!");
-                                            $('#critical-text-market').css("color", "green");
-                                        }else{
+                                        }else if (Number(price[price.length - 1]) < Number(price[price.length-2])){
                                             chart1.data.datasets[0].backgroundColor = 'rgb(0, 128, 0)';
                                             chart1.data.datasets[0].borderColor = 'rgb(0, 128, 0)';
                                             $('#critical-text-market').text("Price Decreasing!");
                                             $('#critical-text-market').css("color", "green");
+
+                                        }else{
+                                            chart1.data.datasets[0].backgroundColor = 'rgb(0, 128, 0)';
+                                            chart1.data.datasets[0].borderColor = 'rgb(0, 128, 0)';
+                                            $('#critical-text-market').text("Nothing Changed!");
+                                            $('#critical-text-market').css("color", "green");
                                         }
 
-                                    
+                                        chart1.update();
                                         
                                     },
                                     error: function() {
@@ -717,20 +719,21 @@
                                             chart3.data.labels = market; 
                                             chart3.data.datasets[0].data = price; 
                                       
-                                            if(price[price.length - 1] > price[price.length-2]){
+                                            if(Number(price[price.length-1]) > Number(price[price.length-2])){
                                                 chart3.data.datasets[0].backgroundColor = 'rgb(255, 69, 0)';
                                                 chart3.data.datasets[0].borderColor = 'rgb(255, 69, 0)';
                                                 $('#critical-text-region').text("Price Increasing!");
                                                 $('#critical-text-region').css("color", "Red");
-                                            }else if(price[price.length - 1]  == price[price.length-2]){
-                                                chart3.data.datasets[0].backgroundColor = 'rgb(0, 128, 0)';
-                                                chart3.data.datasets[0].borderColor = 'rgb(0, 128, 0)';
-                                                $('#critical-text-region').text("Nothing Change");
-                                                $('#critical-text-region').css("color", "green");
-                                            }else{
+                                            }else if(Number(price[price.length-1])  < Number(price[price.length-2])){
                                                 chart3.data.datasets[0].backgroundColor = 'rgb(0, 128, 0)';
                                                 chart3.data.datasets[0].borderColor = 'rgb(0, 128, 0)';
                                                 $('#critical-text-region').text("Price Decreasing!");
+                                                $('#critical-text-region').css("color", "green");
+                        
+                                            }else{
+                                                chart3.data.datasets[0].backgroundColor = 'rgb(0, 128, 0)';
+                                                chart3.data.datasets[0].borderColor = 'rgb(0, 128, 0)';
+                                                $('#critical-text-region').text("Nothing Changed!");
                                                 $('#critical-text-region').css("color", "green");
                                             }
                                             
@@ -764,22 +767,24 @@
                                             chart2.data.datasets[0].data = volume; 
                                         
 
-                                            if(volume[volume.length - 1] > volume[volume.length-2]){
+                                            if(Number(volume[volume.length - 1]) > Number(volume[volume.length-2])){
                                                 chart2.data.datasets[0].backgroundColor = 'rgb(0, 128, 0)';
                                                 chart2.data.datasets[0].borderColor = 'rgb(0, 128, 0)';
                                                 $('#critical-text-volume').text("Volume Increasing!");
                                                 $('#critical-text-volume').css("color", "green");
-                                            }else if (volume[volume.length - 1]  ==  volume[volume.length-2]){
+                                            }else if (Number(volume[volume.length - 1])  <  Number(volume[volume.length-2])){
+                                                chart2.data.datasets[0].backgroundColor = 'rgb(255, 69, 0)';
+                                                chart2.data.datasets[0].borderColor = 'rgb(255, 69, 0)';
+                                                $('#critical-text-volume').text("Volume Decreasing!");
+                                                $('#critical-text-volume').css("color", "green");
+                                            }else{
                                                 chart2.data.datasets[0].backgroundColor = 'rgb(0, 128, 0)';
                                                 chart2.data.datasets[0].borderColor = 'rgb(0, 128, 0)';
                                                 $('#critical-text-volume').text("Nothing Changed!");
                                                 $('#critical-text-volume').css("color", "green");
-                                            }else{
-                                                chart2.data.datasets[0].backgroundColor = 'rgb(255, 69, 0)';
-                                                chart2.data.datasets[0].borderColor = 'rgb(255, 69, 0)';
-                                                $('#critical-text-volume').text("Volume Decreasing!");
-                                                $('#critical-text-volume').css("color", "Red");
                                             }
+
+                                            chart2.update();
                                     
                                         },
                                         error: function() {

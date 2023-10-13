@@ -17,16 +17,41 @@ function alertBox($message, $redirect){
 if (isset($_POST['add'])){
     $category = $_POST['category'];
     $product = $_POST['product'];
-    $price = $_POST['price'];
-    $volume = $_POST['quantity'];
+    $price = (int)  $_POST['price'];
+    $volume = (int) $_POST['quantity'];
     $region = $_POST['region'];
     $market = $_POST['market'];
-    $sql = "INSERT INTO bbm_data(region, shop_name, category, product_name, product_price, product_qty)
-    VALUES ('$region', '$market', '$category', '$product', '$price', '$volume')";
 
-    $res = mysqli_query($conn, $sql);
+   $query = "SELECT * FROM bbm_data WHERE category ='$category' AND product_name = '$product' AND region ='$region' AND shop_name = '$market' ";
 
-    if($res){alertBox("Successfully Added", "../dashboard.php");}
+
+    $query_res = mysqli_query($conn, $query); 
+
+
+    
+   $prices = array();
+   $volumes = array();
+   while($row = mysqli_fetch_assoc($query_res)){
+       $prices[] = (int)$row['product_price']; 
+       $volumes[] = (int)$row['product_qty'];
+   }
+
+   $lastPrice = (int) $prices[count($prices) -1 ];
+   $lastVolume = (int) $volumes[count($volumes) - 1];
+
+   $sql = "INSERT INTO bbm_data(region, shop_name, category, product_name, product_price, product_qty)
+   VALUES ('$region', '$market', '$category', '$product', '$price', '$volume')";
+
+    $res = mysqli_query($conn, $sql);   
+
+    if($res){
+        if($price > $lastPrice || $volume < $lastVolume){
+            alertBox("Successfully Added! Critical Price/Volume Detected!", "../dashboard.php");
+        }else{
+            alertBox("Successfully Added! No Critical Price/Volume Detected! ", "../dashboard.php");
+        }
+    
+    }
     else{alertBox("Unsuccessful", "../dashboard.php");}
 
 }
